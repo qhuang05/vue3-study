@@ -1,13 +1,17 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello World" />
+  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
+  <!-- <HelloWorld msg="Hello World" /> -->
+  <el-config-provider :size="size" :zIndex="zIndex">
+    <el-button>I am ElButton</el-button>
+  </el-config-provider>
 </template>
+
+<script setup lang="ts">
+import {ref} from 'vue'
+import HelloWorld from './components/HelloWorld.vue'
+const size = ref('small')
+const zIndex = ref(4000)
+</script>
 
 <style>
 #app {
