@@ -1,13 +1,14 @@
 <template>
-  <Example></Example>
+  <Example :data="exampleData"></Example>
   <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
   <!-- <HelloWorld msg="Hello World" /> -->
   <!-- <el-button>I am ElButton</el-button> -->
 </template>
 
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import Example from './examples/index.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import Example from '@/examples/index.vue'
+const exampleData = {x: 10, y: 20}
 </script>
 
 <style>
