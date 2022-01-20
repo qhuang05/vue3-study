@@ -1,5 +1,5 @@
 <template>
-  <h2 :title="$attrs.title">child component 2:</h2>
+  <h2 v-bind="$attrs">child component 2:</h2>
   <div>props: {{props.modelValue}}, {{props.bar}}</div>
   <button @click="change1">change1</button>
   <button @click="change2">change2</button>
