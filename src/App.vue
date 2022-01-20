@@ -1,5 +1,5 @@
 <template>
-  <Example :data="exampleData"></Example>
+  <Example></Example>
   <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
   <!-- <HelloWorld msg="Hello World" /> -->
   <!-- <el-button>I am ElButton</el-button> -->
@@ -8,7 +8,6 @@
 <script setup lang="ts">
 // import HelloWorld from './components/HelloWorld.vue'
 import Example from '@/examples/index.vue'
-const exampleData = {x: 10, y: 20}
 </script>
 
 <style>
