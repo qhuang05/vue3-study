@@ -2,7 +2,7 @@
   <div>{{data1}}, {{data11}}</div>
   <div>{{data2}}</div>
   <button @click="changeHandler">change</button>
-  <Child :id="data2.id" :data="data2"></Child>
+  <Child :id="data2.id" :data="data2" @change="confirmChange" @input="inputChange"></Child>
 </template>
 
 <script setup lang="ts">
@@ -13,14 +13,12 @@
   watch(data1, (nv, ov) => {
     console.log('watch data1', nv)
   })
-  watchEffect(data1, (nv, ov) => {
-    
-  })
+  watchEffect(() => {})
 
   let data11 = computed(()=>{
     return data1.value+'-y/m/d'
   })
-
+  
   let data2 = reactive({id: 100, details: {name: 'Mary', age: 20}})
 
   const changeHandler = () => {
@@ -28,6 +26,13 @@
     data2.details.name = 'Lucy'
   }
 
+  const confirmChange = (data) => {
+    console.log('confirmChange == ', data)
+  }
+  
+  const inputChange = (data) => {
+    console.log('inputChange == ', data)
+  }
 </script>
 
 <style scoped lang="scss">
