@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-  import {ref, inject, watch, watchEffect} from 'vue'
+  import {ref, inject} from 'vue'
   const props = defineProps({
     modelValue: String | Number,
     bar: String | Number

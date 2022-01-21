@@ -13,7 +13,7 @@
 <script setup lang="ts">
   import Child from '@/examples/child.vue'
   import Child2 from '@/examples/child2.vue'
-  import {ref, reactive, toRefs, computed, provide, onMounted} from 'vue'
+  import {ref, reactive, toRefs, computed, watch, watchEffect, provide, onMounted} from 'vue'
   let data1 = ref('')
   data1.value = 'hello'
 
@@ -21,13 +21,13 @@
     return data1.value+'-y/m/d'
   })
 
+  let data2 = reactive({id: 100, details: {name: 'Mary', age: 20}})
+
   const changeHandler = () => {
     data1.value = 'hello world'
     data2.details.name = 'Lucy'
   }
   
-  let data2 = reactive({id: 100, details: {name: 'Mary', age: 20}})
-
   const confirmChange = (data) => {
     console.log('confirmChange == ', data)
     data2.details.name = data;
@@ -40,6 +40,22 @@
 
   onMounted(()=>{
     data2.details.options = {k: 100, v: 200};
+  })
+
+  // watch和watchEffect
+  watch(data1, (nv ,ov) => {
+    console.log('watch data1>>', nv);
+  })
+  watch(()=>data2.details, (nv, ov) => {
+    console.log('watch data2>>', nv)
+  }, {
+    // immediate: true
+    deep: true
+  })
+  watchEffect(()=>{
+    // watchEffect每次初始化时会执行一次回调函数来自动获取依赖; 
+    // 无法获取到原值，只能得到变化后的值
+    console.log('watchEffect>>', data1, data2);
   })
 
   // v-model使用
