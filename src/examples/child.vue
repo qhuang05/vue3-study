@@ -1,24 +1,25 @@
 <template>
-  <h2 :title="$attrs.title">child component:</h2>
-  <div>id={{props.msg}}</div>
+  <h2 :title="$attrs.title" class="title">child component:</h2>
+  <div class="c1">id={{props.msg}}</div>
   <div>data={{props.data}}</div>
   <input type="text" v-model="keyword" @change="changeHandler" @input="inputHandler" />
-  <Grandson>
+  <Grandson class="g1">
     <template v-slot:default="slotProps">
       <div>默认slot: {{slotProps}}</div>
       <ul>
-        <li v-for="item in listData">{{item.name}}</li>
+        <div is="vue:li" v-for="item in listData">{{item.name}}</div>
       </ul>
     </template>
     <template #extra="slotProps">
       <div>extra slot: {{slotProps}}</div>
     </template>
   </Grandson>
+  <el-button>I am ElButton</el-button>
 </template>
 
 <script setup lang="ts">
   import Grandson from '@/examples/grandson.vue'
-  import {ref, watch, watchEffect, useAttrs} from 'vue'
+  import {ref, reactive, watch, watchEffect, useAttrs} from 'vue'
   const props = defineProps({
     msg: String,
     data: Object
@@ -41,8 +42,24 @@
   })
 
   let listData = ref([{id:1, name: 'vue'}, {id:2, name: 'react'}])
+
+  // 样式
+  let theme = reactive({color: '#f00'})
+  setTimeout(() => {
+    theme.color = '#0f0'
+  }, 1500);
 </script>
 
 <style scoped lang="scss">
-
+// v-bind
+.title{
+  color: v-bind('theme.color')
+}
+// 全局生效
+// :global(.desc){
+//   text-decoration: underline;
+// }
+::v-deep(.el-button){
+  color: '#00f' !important;
+}
 </style>

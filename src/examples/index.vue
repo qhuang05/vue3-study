@@ -13,6 +13,7 @@
 <script setup lang="ts">
   import Child from '@/examples/child.vue'
   import Child2 from '@/examples/child2.vue'
+  import {getList} from '@/examples/test.js'
   import {ref, reactive, toRefs, computed, watch, watchEffect, provide, onMounted} from 'vue'
   let data1 = ref('')
   data1.value = 'hello'
@@ -38,8 +39,10 @@
     data2.details.name = data;
   }
 
-  onMounted(()=>{
-    data2.details.options = {k: 100, v: 200};
+  onMounted(async ()=>{
+    data2.details.options = {k: 100, v: 200}
+    // let listData = await getList()
+    // console.log('get list data ==', listData)
   })
 
   // watch和watchEffect
