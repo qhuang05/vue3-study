@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-  import {ref, defineProps, defineEmits, watch, watchEffect, useAttrs} from 'vue'
+  import {ref, inject, watch, watchEffect} from 'vue'
   const props = defineProps({
     modelValue: String | Number,
     bar: String | Number
@@ -18,6 +18,9 @@
   const change2 = () => {
     emit('update:bar', 'def')
   }
+
+  const injectData = inject('provideData');
+  console.log('child injectData=', injectData)
 </script>
 
 <style scoped lang="scss">

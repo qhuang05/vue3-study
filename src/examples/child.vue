@@ -3,11 +3,22 @@
   <div>id={{props.msg}}</div>
   <div>data={{props.data}}</div>
   <input type="text" v-model="keyword" @change="changeHandler" @input="inputHandler" />
-  <!-- <button @click="changeHandler">click me</button> -->
+  <Grandson>
+    <template v-slot:default="slotProps">
+      <div>默认slot: {{slotProps}}</div>
+      <ul>
+        <li v-for="item in listData">{{item.name}}</li>
+      </ul>
+    </template>
+    <template #extra="slotProps">
+      <div>extra slot: {{slotProps}}</div>
+    </template>
+  </Grandson>
 </template>
 
 <script setup lang="ts">
-  import {ref, defineProps, defineEmits, watch, watchEffect, useAttrs} from 'vue'
+  import Grandson from '@/examples/grandson.vue'
+  import {ref, watch, watchEffect, useAttrs} from 'vue'
   const props = defineProps({
     msg: String,
     data: Object
@@ -28,6 +39,8 @@
   watch(()=>props.msg, (nv, ov) => {
     keyword.value = nv
   })
+
+  let listData = ref([{id:1, name: 'vue'}, {id:2, name: 'react'}])
 </script>
 
 <style scoped lang="scss">

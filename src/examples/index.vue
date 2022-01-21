@@ -8,13 +8,12 @@
   </div>
   <Child title="子组件1" :msg="data1" :data="data2" @change="confirmChange" @input="inputChange"></Child>
   <Child2 title="子组件2" v-model="foo" v-model:bar="bar" @update:modelValue="modelChanged" @update:bar="modelChanged"></Child2>
-  
 </template>
 
 <script setup lang="ts">
   import Child from '@/examples/child.vue'
   import Child2 from '@/examples/child2.vue'
-  import {ref, reactive, toRefs, computed, onMounted} from 'vue'
+  import {ref, reactive, toRefs, computed, provide, onMounted} from 'vue'
   let data1 = ref('')
   data1.value = 'hello'
 
@@ -32,11 +31,16 @@
   const confirmChange = (data) => {
     console.log('confirmChange == ', data)
     data2.details.name = data;
+    delete data2.details.options;
   }
   const inputChange = (data) => {
     console.log('inputChange == ', data)
     data2.details.name = data;
   }
+
+  onMounted(()=>{
+    data2.details.options = {k: 100, v: 200};
+  })
 
   // v-model使用
   let foo = ref('100')
@@ -44,6 +48,9 @@
   const modelChanged = (val) => {
     console.log('modelChanged=', val)
   }
+  
+  // provide, inject使用
+  provide('provideData', {data1, data2})
 </script>
 
 <style scoped lang="scss">
