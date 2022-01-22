@@ -14,7 +14,9 @@
       <div>extra slot: {{slotProps}}</div>
     </template>
   </Grandson>
-  <el-button>I am ElButton</el-button>
+  <div class="button">
+    <el-button>I am ElButton</el-button>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -59,7 +61,10 @@
 // :global(.desc){
 //   text-decoration: underline;
 // }
-::v-deep(.el-button){
-  color: '#00f' !important;
+.button{
+  :deep(.el-button){
+    color: #00f;
+    background: #f00;
+  }
 }
 </style>
