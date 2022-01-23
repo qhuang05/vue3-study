@@ -1,19 +1,21 @@
 <template>
   <h2 :title="$attrs.title" class="title">child component:</h2>
   <div class="c1">id={{props.msg}}</div>
-  <div>data={{props.data}}</div>
+  <div :class="mod1.a">data={{props.data}}</div>
   <input type="text" v-model="keyword" @change="changeHandler" @input="inputHandler" />
-  <Grandson class="g1">
-    <template v-slot:default="slotProps">
-      <div>默认slot: {{slotProps}}</div>
-      <ul>
-        <div is="vue:li" v-for="item in listData">{{item.name}}</div>
-      </ul>
-    </template>
-    <template #extra="slotProps">
-      <div>extra slot: {{slotProps}}</div>
-    </template>
-  </Grandson>
+  <div class="g1">
+    <Grandson>
+      <template v-slot:default="slotProps">
+        <div class="default-tit">默认slot: {{slotProps}}</div>
+        <ul>
+          <div is="vue:li" v-for="item in listData">{{item.name}}</div>
+        </ul>
+      </template>
+      <template #extra="slotProps">
+        <div>extra slot: {{slotProps}}</div>
+      </template>
+    </Grandson>
+  </div>
   <div class="button">
     <el-button>I am ElButton</el-button>
   </div>
@@ -52,7 +54,7 @@
   }, 1500);
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 // v-bind
 .title{
   color: v-bind('theme.color')
@@ -61,10 +63,21 @@
 // :global(.desc){
 //   text-decoration: underline;
 // }
+// deep
 .button{
   :deep(.el-button){
     color: #00f;
     background: #f00;
   }
 }
+</style>
+<style lang="scss" module>
+  .a{
+    color: red;
+  }
+</style>
+<style lang="scss" module="mod1">
+  .a{
+    color: orange;
+  }
 </style>

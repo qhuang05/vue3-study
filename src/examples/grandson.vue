@@ -16,6 +16,8 @@
   console.log('grandson injectData=', injectData);
 </script>
 
-<style scoped lang="scss">
-
+<style lang="scss" scoped>
+:slotted(.default-tit){
+  color: #0f0;
+}
 </style>
