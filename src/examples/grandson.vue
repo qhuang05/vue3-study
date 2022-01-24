@@ -27,8 +27,6 @@
   const tClick = _.throttle(()=>{
     console.log('throttle===')
   }, 1000);
-
-  // 自定义指令
 </script>
 
 <style lang="scss" scoped>
