@@ -1,13 +1,15 @@
 <template>
-  <div>{{data1}}, {{com1}}</div>
-  <div>{{data2}}</div>
-  <button @click="changeHandler">change</button>
+  <div title="数据响应式">
+    <div>{{data1}}, {{com1}}</div>
+    <div>{{data2}}</div>
+    <button @click="changeHandler">change</button>
+  </div>
   <div style="border:1px solid #ccc">
     <p>{{foo}}</p>
     <p>{{bar}}</p>
   </div>
   <Child title="子组件1" :msg="data1" :data="data2" @change="confirmChange" @input="inputChange"></Child>
-  <Child2 title="子组件2" v-model="foo" v-model:bar="bar" @update:modelValue="modelChanged" @update:bar="modelChanged"></Child2>
+  <Child2 title="子组件2" v-model="foo" v-model:bar="bar" v-model:list="list" @update:modelValue="modelChanged" @update:bar="modelChanged"></Child2>
 </template>
 
 <script setup lang="ts">
@@ -15,11 +17,12 @@
   import Child2 from '@/examples/child2.vue'
   import {getList} from '@/examples/test.js'
   import {ref, reactive, toRefs, computed, watch, watchEffect, provide, onMounted} from 'vue'
+  // 数据响应式ref, reactive
   let data1 = ref('')
   data1.value = 'hello'
 
   let com1 = computed(()=>{
-    return data1.value+'-y/m/d'
+    return data1.value + '-y/m/d'
   })
 
   let data2 = reactive({id: 100, details: {name: 'Mary', age: 20}})
@@ -62,8 +65,9 @@
   })
 
   // v-model使用
-  let foo = ref('100')
+  let foo = ref(100)
   let bar = ref('abc')
+  let list = ref([{id:1,name:'vue'}, {id:2, name: 'typescript'}])
   const modelChanged = (val) => {
     console.log('modelChanged=', val)
   }

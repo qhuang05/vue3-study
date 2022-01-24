@@ -2,13 +2,13 @@
   <h2 :title="$attrs.title" class="title">child component:</h2>
   <div class="c1">id={{props.msg}}</div>
   <div :class="mod1.a">data={{props.data}}</div>
-  <input type="text" v-model="keyword" @change="changeHandler" @input="inputHandler" />
+  <input type="text" v-model="keyword" @change="changeHandler" @input="inputHandler" ref="inputEl" />
   <div class="g1">
     <Grandson>
       <template v-slot:default="slotProps">
         <div class="default-tit">默认slot: {{slotProps}}</div>
         <ul>
-          <div is="vue:li" v-for="item in listData">{{item.name}}</div>
+          <div is="vue:li" v-for="item in listData" :ref="setListEl">{{item.name}}</div>
         </ul>
       </template>
       <template #extra="slotProps">
@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
   import Grandson from '@/examples/grandson.vue'
-  import {ref, reactive, watch, watchEffect, useAttrs} from 'vue'
+  import {ref, reactive, watch, watchEffect, useAttrs, nextTick, onMounted} from 'vue'
   const props = defineProps({
     msg: String,
     data: Object
@@ -46,6 +46,19 @@
   })
 
   let listData = ref([{id:1, name: 'vue'}, {id:2, name: 'react'}])
+
+  // ref和dom
+  const inputEl = ref(null)
+  const listEl = ref([])
+  const setListEl = (el) => {
+    listEl.value.push(el)
+  }
+  nextTick(()=>{
+    console.log('vue3 dom', inputEl.value, listEl.value)
+    inputEl.value.focus()
+  })
+  onMounted(()=>{
+  })
 
   // 样式
   let theme = reactive({color: '#f00'})
