@@ -1,7 +1,7 @@
 <template>
   <h2 v-bind="$attrs">child component 2:</h2>
   <div>props: {{props.modelValue}}, {{props.bar}}, {{props.list}}</div>
-  <button @click="change1">change1</button>
+  <button @click="change1" v-autofocus>change1</button>
   <button @click="change2">change2</button>
 </template>
 

@@ -53,11 +53,11 @@
   const setListEl = (el) => {
     listEl.value.push(el)
   }
-  nextTick(()=>{
-    console.log('vue3 dom', inputEl.value, listEl.value)
-    inputEl.value.focus()
-  })
   onMounted(()=>{
+    nextTick(()=>{
+      console.log('vue3 dom', inputEl.value, listEl.value)
+      inputEl.value.focus()
+    })
   })
 
   // 样式
