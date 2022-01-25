@@ -6,6 +6,7 @@
     <slot name="extra" :data="data2"></slot>
   </div>
   <div>
+    {{count}}
     <button @click="dClick">debounce click</button>
     <button @click="tClick">throttle click</button>
   </div>
@@ -14,11 +15,12 @@
 <script setup lang="ts">
   import _ from 'lodash'
   import {reactive, inject} from 'vue'
+  import {useStore} from 'vuex'
   let data = reactive({x: 10, y: 20})
   let data2 = reactive({xx: 10, yy: 20})
 
-  const injectData = inject('provideData');
-  console.log('grandson injectData=', injectData);
+  const injectData = inject('provideData')
+  console.log('grandson injectData=', injectData)
 
   const dClick = _.debounce(()=> {
     console.log('debounce===')
@@ -26,7 +28,10 @@
 
   const tClick = _.throttle(()=>{
     console.log('throttle===')
-  }, 1000);
+  }, 1000)
+
+  // 组件暴露自己的数据
+  defineExpose({data, data2, dClick})
 </script>
 
 <style lang="scss" scoped>

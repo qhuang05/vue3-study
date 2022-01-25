@@ -4,7 +4,7 @@
   <div :class="mod1.a">data={{props.data}}</div>
   <input type="text" v-model="keyword" @change="changeHandler" @input="inputHandler" ref="inputEl" />
   <div class="g1">
-    <Grandson>
+    <Grandson ref="grandson">
       <template v-slot:default="slotProps">
         <div class="default-tit">默认slot: {{slotProps}}</div>
         <ul>
@@ -53,10 +53,13 @@
   const setListEl = (el) => {
     listEl.value.push(el)
   }
+  const grandson = ref(null)
   onMounted(()=>{
     nextTick(()=>{
       console.log('vue3 dom', inputEl.value, listEl.value)
       inputEl.value.focus()
+      console.log('vue3 component', grandson.value.data)
+      // grandson.value.dClick();
     })
   })
 
