@@ -6,7 +6,7 @@
     <slot name="extra" :data="data2"></slot>
   </div>
   <div>
-    {{count}}
+    {{store.state.count}}
     <button @click="dClick">debounce click</button>
     <button @click="tClick">throttle click</button>
   </div>
@@ -22,12 +22,15 @@
   const injectData = inject('provideData')
   console.log('grandson injectData=', injectData)
 
+  const store = useStore()
   const dClick = _.debounce(()=> {
     console.log('debounce===')
+    store.commit('increase', 2);
   }, 1000, {leading: true})
 
   const tClick = _.throttle(()=>{
     console.log('throttle===')
+    store.dispatch('asyncIncrease', 1);
   }, 1000)
 
   // 组件暴露自己的数据
