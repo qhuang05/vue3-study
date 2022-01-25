@@ -15,8 +15,9 @@
 <script setup lang="ts">
   import Child from '@/examples/child.vue'
   import Child2 from '@/examples/child2.vue'
-  import {getList} from '@/examples/test.js'
+  import {getList} from '@/examples/test.ts'
   import {ref, reactive, toRefs, computed, watch, watchEffect, provide, onMounted} from 'vue'
+  import {} from '@/apis/index.ts'
   // 数据响应式ref, reactive
   let data1 = ref('')
   data1.value = 'hello'
