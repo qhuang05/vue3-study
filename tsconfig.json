@@ -10,10 +10,10 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["./src/*"]
-    },
+    // "baseUrl": "./",
+    // "paths": {
+    //   "@/*": ["./src/*"]
+    // },
     "types": ["element-plus/global"]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]

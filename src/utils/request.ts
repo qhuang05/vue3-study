@@ -12,7 +12,7 @@ httpService.interceptors.request.use(config => {
   return Promise.reject(error);
 })
 
-httpService.interceptors.response.user(response => {
+httpService.interceptors.response.use(response => {
   const res = response.data;
   if(res.status > 0){
     return res;

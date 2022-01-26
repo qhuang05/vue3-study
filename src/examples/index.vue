@@ -17,7 +17,7 @@
   import Child2 from '@/examples/child2.vue'
   import {getList} from '@/examples/test.ts'
   import {ref, reactive, toRefs, computed, watch, watchEffect, provide, onMounted} from 'vue'
-  import {} from '@/apis/index.ts'
+  import {getQrcode} from '@/apis/index.ts'
   // 数据响应式ref, reactive
   let data1 = ref('')
   data1.value = 'hello'
@@ -45,8 +45,8 @@
 
   onMounted(async ()=>{
     data2.details.options = {k: 100, v: 200}
-    // let listData = await getList()
-    // console.log('get list data ==', listData)
+    let qrData = await getQrcode();
+    console.log('get qrData ==', qrData)
   })
 
   // watch和watchEffect
