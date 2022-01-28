@@ -48,7 +48,7 @@
   let listData = ref([{id:1, name: 'vue'}, {id:2, name: 'react'}])
 
   // ref和dom
-  const inputEl = ref(null)
+  const inputEl = ref(null | HTMLElement)
   const listEl = ref([])
   const setListEl = (el) => {
     listEl.value.push(el)

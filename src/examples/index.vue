@@ -17,7 +17,7 @@
   import Child2 from '@/examples/child2.vue'
   import {getList} from '@/examples/test.ts'
   import {ref, reactive, toRefs, computed, watch, watchEffect, provide, onMounted} from 'vue'
-  import {getQrcode} from '@/apis/index.ts'
+  import { getQrcode, categorySaveCancel } from '@/apis/index.ts'
   // 数据响应式ref, reactive
   let data1 = ref('')
   data1.value = 'hello'
@@ -47,6 +47,8 @@
     data2.details.options = {k: 100, v: 200}
     let qrData = await getQrcode();
     console.log('get qrData ==', qrData)
+    let ret1 = await categorySaveCancel({ids: 2998786});
+    console.log('ret1 ===', ret1)
   })
 
   // watch和watchEffect

@@ -9,4 +9,12 @@ export function getQrcode(params) {
   });
 }
 
-
+export function categorySaveCancel(params: Object){
+  return request({
+    url: "/merchant/customerGallery/batchCancelCategory",
+    method: "post",
+    data: qs.stringify(params)
+    // method: "get",
+    // params
+  });
+}
