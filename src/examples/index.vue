@@ -31,6 +31,7 @@
   const changeHandler = () => {
     data1.value = 'hello world'
     data2.details.name = 'Lucy'
+    // data2.details = {name: 'Lucy', age: 18, isChecked: false}
   }
   
   const confirmChange = (data) => {
