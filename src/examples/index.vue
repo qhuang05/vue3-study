@@ -10,11 +10,13 @@
   </div>
   <Child title="子组件1" :msg="data1" :data="data2" @change="confirmChange" @input="inputChange"></Child>
   <Child2 title="子组件2" v-model="foo" v-model:bar="bar" v-model:list="list" @update:modelValue="modelChanged" @update:bar="modelChanged"></Child2>
+  <Child3></Child3>
 </template>
 
 <script setup lang="ts">
   import Child from '@/examples/child.vue'
   import Child2 from '@/examples/child2.vue'
+  import Child3 from '@/examples/child3.vue'
   import {getList} from '@/examples/test.ts'
   import {ref, reactive, toRefs, computed, watch, watchEffect, provide, onMounted} from 'vue'
   import { getQrcode, categorySaveCancel } from '@/apis/index.ts'
