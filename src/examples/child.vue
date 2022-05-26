@@ -1,6 +1,7 @@
 <template>
   <h2 :title="$attrs.title" class="title">child component:</h2>
   <div class="c1">id={{props.msg}}</div>
+  <div :class="$style.a">data={{props.data}}</div>
   <div :class="mod1.a">data={{props.data}}</div>
   <input type="text" v-model="keyword" @change="changeHandler" @input="inputHandler" ref="inputEl" />
   <div class="g1">
