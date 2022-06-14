@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 console.log('11111')
-console.log('22222')
 
 const httpService = axios.create({
   baseURL: '/api',
