@@ -10,6 +10,7 @@
   // import HelloWorld from './components/HelloWorld.vue'
   import Example from '@/examples/index.vue';
   import Ele from '@/examples/element/index.vue';
+  console.log('aaa');
 </script>
 
 <style>
