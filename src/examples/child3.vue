@@ -18,7 +18,7 @@
   let data1 = toRaw(state1);
   const change1 = () => {
     data1.name = 'BBB';
-    console.log(state1, data1)
+    console.log(state1, data1) //state1.name和data1.name都变成BBB，但是界面是不更新的，还是显示AAA
   }
 
   // markRaw: 将数据标记为永远不能追踪的数据，一般在编写自己的第三方库时使用
@@ -26,7 +26,7 @@
   let state2 = reactive(data2);
   const change2 = () => {
     state2.name = 'CCC';
-    console.log(state2, data2);
+    console.log(state2, data2); //state2.name和data2.name都变成CCC, 但是界面是不更新的，还是显示AAA
   }
 </script>
 
